@@ -3,6 +3,7 @@ import { FlatList, View, Button } from 'react-native';
 import { Text, Card } from 'react-native-paper';
 import { fetchFriends } from '../services/friendsService';
 import AddFriendModal from '../components/AddFriendModal';
+import FriendsHeader from '../components/FriendsHeader';
 
 interface Friend {
   id: string;
@@ -10,17 +11,27 @@ interface Friend {
   email: string;
 }
 
-const HomeScreen = () => {
+const FriendScreen = () => {
   const [friends, setFriends] = useState<Friend[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
 
+  const handleAddFriend = (name: string, email: string) => {
+    // Add friend logic
+    const newFriend = { id: Date.now().toString(), name, email };
+    setFriends((prevFriends) => [...prevFriends, newFriend]);
+  };
+
   useEffect(() => {
-    fetchFriends().then(setFriends); 
+    // Fetch the initial friends list when the screen is loaded
+    fetchFriends().then(setFriends);
   }, []);
 
   return (
-    <View style={{ flex: 1, padding: 20 }}>
-      <Button title="Add Friend" onPress={() => setModalVisible(true)} />
+    <View style={{ flex: 1 }}>
+      {/* Use the header component here */}
+      <FriendsHeader onAddFriendPress={() => setModalVisible(true)} />
+
+      {/* Render the list of friends */}
       <FlatList
         data={friends}
         keyExtractor={(item) => item.id}
@@ -33,9 +44,15 @@ const HomeScreen = () => {
           </Card>
         )}
       />
-      <AddFriendModal visible={modalVisible} onClose={() => setModalVisible(false)} />
+
+      {/* Add Friend Modal */}
+      <AddFriendModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        onAddFriend={handleAddFriend}
+      />
     </View>
   );
 };
 
-export default HomeScreen;
+export default FriendScreen;

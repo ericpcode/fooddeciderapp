@@ -3,7 +3,7 @@ import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider as PaperProvider } from 'react-native-paper';
-import HomeScreen from './screens/HomeScreen';
+import FriendScreen from './screens/FriendScreen';
 import AuthScreen from './screens/AuthScreen';
 
 const Stack = createNativeStackNavigator();
@@ -13,17 +13,21 @@ const App = () => {
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
-      setIsAuthenticated(true); 
+      setIsAuthenticated(true);
     }
-  }, []); 
+  }, []);
 
   return (
     <PaperProvider>
       <StatusBar barStyle="dark-content" />
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            header: () => null,
+          }}
+        >
           {isAuthenticated ? (
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Friends" component={FriendScreen} />
           ) : (
             <Stack.Screen name="Auth" component={AuthScreen} />
           )}

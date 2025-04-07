@@ -4,14 +4,15 @@ import { Modal, Portal, Button, TextInput } from 'react-native-paper';
 interface AddFriendModalProps {
   visible: boolean;
   onClose: () => void;
+  onAddFriend: (name: string, email: string) => void;
 }
 
-const AddFriendModal: React.FC<AddFriendModalProps> = ({ visible, onClose }) => {
+const AddFriendModal: React.FC<AddFriendModalProps> = ({ visible, onClose, onAddFriend }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
   const handleAddFriend = () => {
-    console.log(`Adding friend: ${name}, ${email}`);
+    onAddFriend(name, email);
     onClose();
   };
 
