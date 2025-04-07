@@ -5,8 +5,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider as PaperProvider } from 'react-native-paper';
 import FriendScreen from './screens/FriendScreen';
 import AuthScreen from './screens/AuthScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -16,6 +19,25 @@ const App = () => {
       setIsAuthenticated(true);
     }
   }, []);
+
+  const BottomTabs = () => (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color, size }) => {
+          let iconName;
+          if (route.name === 'Friends') {
+            iconName = 'people';
+          } else if (route.name === 'Settings') {
+            iconName = 'settings';
+          }
+          return <Icon name={iconName} size={size} color={color} />;
+        },
+      })}
+    >
+      <Tab.Screen name="Friends" component={FriendScreen} />
+      <Tab.Screen name="Settings" component={AuthScreen} />
+    </Tab.Navigator>
+  );
 
   return (
     <PaperProvider>
@@ -27,7 +49,7 @@ const App = () => {
           }}
         >
           {isAuthenticated ? (
-            <Stack.Screen name="Friends" component={FriendScreen} />
+            <Stack.Screen name="Home" component={BottomTabs} />
           ) : (
             <Stack.Screen name="Auth" component={AuthScreen} />
           )}
