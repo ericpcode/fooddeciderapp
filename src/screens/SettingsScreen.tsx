@@ -1,19 +1,13 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Button, Text, useTheme } from 'react-native-paper';
+import { Button, Text } from 'react-native-paper';
 import { useThemeContext } from '../context/ThemeContext';
 
 const SettingsScreen = () => {
-  const { toggleTheme, isDark } = useThemeContext();
-  const theme = useTheme();
+  const { toggleTheme, isDark, theme } = useThemeContext(); 
 
   return (
-    <View
-      style={[
-        styles.container,
-        { backgroundColor: theme.colors.background },
-      ]}
-    >
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <Text style={{ color: theme.colors.primary, marginBottom: 20 }}>
         Theme: {isDark ? 'Dark' : 'Light'}
       </Text>
