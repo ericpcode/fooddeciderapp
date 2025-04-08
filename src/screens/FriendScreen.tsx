@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, View, Button } from 'react-native';
 import { Text, Card } from 'react-native-paper';
-import { fetchFriends } from '../services/friendsService';
 import AddFriendModal from '../components/AddFriendModal';
 import FriendsHeader from '../components/FriendsHeader';
+import { fetchFriends } from '../services/friendsService';
 
 interface Friend {
   id: string;
