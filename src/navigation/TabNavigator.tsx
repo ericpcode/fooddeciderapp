@@ -34,13 +34,7 @@ const BottomTabs = () => (
       name="Settings"
       component={SettingsScreen}
       options={{
-        headerStyle: {
-          backgroundColor: '#F4A261',
-        },
-        headerTintColor: '#2D3142',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
+        headerShown: false,
       }}
     />
   </Tab.Navigator>
