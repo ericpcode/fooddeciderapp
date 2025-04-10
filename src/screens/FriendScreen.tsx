@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import { Text, Card, Avatar } from 'react-native-paper';
-import AddFriendModal from '../components/AddFriendModal';
-import FriendsHeader from '../components/FriendsHeader';
+import AddFriendModal from '../components/friends/AddFriendModal';
+import FriendsHeader from '../components/friends/FriendsHeader';
 import { fetchFriends } from '../services/friendsService';
 import { useThemeContext } from '../context/ThemeContext'; 
 
