@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import FriendScreen from '../screens/FriendScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import HomeScreen from '../screens/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -11,7 +12,9 @@ const BottomTabs = () => (
     screenOptions={({ route }) => ({
       tabBarIcon: ({ color, size }) => {
         let iconName;
-        if (route.name === 'Friends') {
+        if (route.name === 'Home') {
+          iconName = 'home';
+        } else if (route.name === 'Friends') {
           iconName = 'people';
         } else if (route.name === 'Settings') {
           iconName = 'settings';
@@ -24,18 +27,19 @@ const BottomTabs = () => (
     })}
   >
     <Tab.Screen
+      name="Home"
+      component={HomeScreen}
+      options={{ headerShown: false }}
+    />
+    <Tab.Screen
       name="Friends"
       component={FriendScreen}
-      options={{
-        headerShown: false, 
-      }}
+      options={{ headerShown: false }}
     />
     <Tab.Screen
       name="Settings"
       component={SettingsScreen}
-      options={{
-        headerShown: false,
-      }}
+      options={{ headerShown: false }}
     />
   </Tab.Navigator>
 );
