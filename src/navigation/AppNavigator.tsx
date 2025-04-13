@@ -3,7 +3,7 @@ import { StatusBar, View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useThemeContext } from '../context/ThemeContext';
-import BottomTabs from './TabNavigator';
+import DrawerNavigator from './DrawerNavigator';
 import AuthScreen from '../screens/AuthScreen';
 
 const Stack = createNativeStackNavigator();
@@ -23,7 +23,7 @@ const AppNavigator = () => {
       <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {isAuthenticated ? (
-          <Stack.Screen name="Home" component={BottomTabs} />
+          <Stack.Screen name="Home" component={DrawerNavigator} />
         ) : (
           <Stack.Screen name="Auth" component={AuthScreen} />
         )}

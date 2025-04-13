@@ -1,15 +1,8 @@
 import React from 'react';
-import { Appbar } from 'react-native-paper';
-import { useTheme } from 'react-native-paper';
+import DrawerHeader from '../ui/DrawerHeader';
 
 const SettingsHeader: React.FC = () => {
-  const { colors } = useTheme();
-
-  return (
-    <Appbar.Header style={{ backgroundColor: colors.primary }}>
-      <Appbar.Content title="Settings" titleStyle={{ color: colors.onPrimary }} />
-    </Appbar.Header>
-  );
+  return <DrawerHeader title="Settings" />;
 };
 
 export default SettingsHeader;
