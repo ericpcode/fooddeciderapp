@@ -28,7 +28,7 @@ const AppNavigator = () => {
           <Stack.Screen name="Home" component={DrawerNavigator} />
         ) : (
           <>
-            <Stack.Screen name="Auth" component={LoginScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Signup" component={SignupScreen} />
             <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
           </>
